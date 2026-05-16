@@ -1,0 +1,284 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260516122710
+Username: LAZAR\lazar
+RunAs User: LAZAR\lazar
+Configuration Name: 
+Machine: LAZAR (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\run_web.ps1
+Process ID: 27532
+PSVersion: 5.1.26100.8457
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8457
+BuildVersion: 10.0.26100.8457
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Using Python: C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+PS>TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+>> TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+Startup failed: Traceback (most recent call last):
+See log: C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\server_log.txt
+**********************
+Windows PowerShell transcript end
+End time: 20260516122712
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260516122723
+Username: LAZAR\lazar
+RunAs User: LAZAR\lazar
+Configuration Name: 
+Machine: LAZAR (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\run_web.ps1
+Process ID: 25972
+PSVersion: 5.1.26100.8457
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8457
+BuildVersion: 10.0.26100.8457
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Using Python: C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+PS>TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+>> TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+Startup failed: Traceback (most recent call last):
+See log: C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\server_log.txt
+**********************
+Windows PowerShell transcript end
+End time: 20260516122724
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260516122805
+Username: LAZAR\lazar
+RunAs User: LAZAR\lazar
+Configuration Name: 
+Machine: LAZAR (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\run_web.ps1
+Process ID: 33712
+PSVersion: 5.1.26100.8457
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8457
+BuildVersion: 10.0.26100.8457
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Using Python: C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+PS>TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+>> TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+Startup failed: Traceback (most recent call last):
+See log: C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\server_log.txt
+**********************
+Windows PowerShell transcript end
+End time: 20260516122806
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260516122818
+Username: LAZAR\lazar
+RunAs User: LAZAR\lazar
+Configuration Name: 
+Machine: LAZAR (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\run_web.ps1
+Process ID: 35628
+PSVersion: 5.1.26100.8457
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8457
+BuildVersion: 10.0.26100.8457
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Using Python: C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+PS>TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+>> TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+Startup failed: Traceback (most recent call last):
+See log: C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\server_log.txt
+**********************
+Windows PowerShell transcript end
+End time: 20260516122819
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260516123123
+Username: LAZAR\lazar
+RunAs User: LAZAR\lazar
+Configuration Name: 
+Machine: LAZAR (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\run_web.ps1
+Process ID: 24064
+PSVersion: 5.1.26100.8457
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8457
+BuildVersion: 10.0.26100.8457
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Using Python: C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+PS>TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+>> TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+Startup failed: Traceback (most recent call last):
+See log: C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\server_log.txt
+**********************
+Windows PowerShell transcript end
+End time: 20260516123124
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260516123150
+Username: LAZAR\lazar
+RunAs User: LAZAR\lazar
+Configuration Name: 
+Machine: LAZAR (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\run_web.ps1
+Process ID: 21520
+PSVersion: 5.1.26100.8457
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8457
+BuildVersion: 10.0.26100.8457
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Using Python: C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+PS>TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+>> TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+Startup failed: Traceback (most recent call last):
+See log: C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\server_log.txt
+**********************
+Windows PowerShell transcript end
+End time: 20260516123151
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260516123202
+Username: LAZAR\lazar
+RunAs User: LAZAR\lazar
+Configuration Name: 
+Machine: LAZAR (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\run_web.ps1
+Process ID: 4832
+PSVersion: 5.1.26100.8457
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8457
+BuildVersion: 10.0.26100.8457
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Using Python: C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+PS>TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+>> TerminatingError(python.exe): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Traceback (most recent call last):"
+Startup failed: Traceback (most recent call last):
+See log: C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\server_log.txt
+**********************
+Windows PowerShell transcript end
+End time: 20260516123203
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260516123416
+Username: Lazar\CodexSandboxOffline
+RunAs User: Lazar\CodexSandboxOffline
+Configuration Name: 
+Machine: LAZAR (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\run_web.ps1
+Process ID: 19132
+PSVersion: 5.1.26100.8457
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8457
+BuildVersion: 10.0.26100.8457
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Using Python: C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+Dependencies already available.
+Tip: set CROSSREF_MAILTO for Crossref polite requests, e.g.:
+$env:CROSSREF_MAILTO="you@domain.com"
+Starting AI Scientific Reviewer System at http://127.0.0.1:8000
+**********************
+Windows PowerShell transcript start
+Start time: 20260516123601
+Username: LAZAR\lazar
+RunAs User: LAZAR\lazar
+Configuration Name: 
+Machine: LAZAR (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System\run_web.ps1
+Process ID: 35092
+PSVersion: 5.1.26100.8457
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8457
+BuildVersion: 10.0.26100.8457
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Using Python: C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+Dependencies already available.
+Tip: set CROSSREF_MAILTO for Crossref polite requests, e.g.:
+$env:CROSSREF_MAILTO="you@domain.com"
+Starting AI Scientific Reviewer System at http://127.0.0.1:8000
+PS>TerminatingError(Import-Module): "Windows PowerShell Workflow is not supported in a Windows PowerShell x86-based console. Open a Windows PowerShell x64-based console, and then try again."
+**********************
+Windows PowerShell transcript start
+Start time: 20260516133347
+Username: LAZAR\lazar
+RunAs User: LAZAR\lazar
+Configuration Name: 
+Machine: LAZAR (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\lazar\OneDrive\Documents\New project 2\AI Scientific Reviewer System v2\run_web.ps1
+Process ID: 21736
+PSVersion: 5.1.26100.8457
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8457
+BuildVersion: 10.0.26100.8457
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Using Python: C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+Dependencies already available.
+Tip: set CROSSREF_MAILTO for Crossref polite requests, e.g.:
+$env:CROSSREF_MAILTO="you@domain.com"
+Starting AI Scientific Reviewer System at http://127.0.0.1:8000
+PS>TerminatingError(Import-Module): "Windows PowerShell Workflow is not supported in a Windows PowerShell x86-based console. Open a Windows PowerShell x64-based console, and then try again."
+**********************
+Windows PowerShell transcript start
+Start time: 20260516140432
+Username: LAZAR\lazar
+RunAs User: LAZAR\lazar
+Configuration Name: 
+Machine: LAZAR (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\lazar\OneDrive\Documents\New project 2\ai v4\run_web.ps1
+Process ID: 11992
+PSVersion: 5.1.26100.8457
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8457
+BuildVersion: 10.0.26100.8457
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Using Python: C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+Dependencies already available.
+Tip: set CROSSREF_MAILTO for Crossref polite requests, e.g.:
+$env:CROSSREF_MAILTO="you@domain.com"
+Starting AI Scientific Reviewer System at http://127.0.0.1:8000
+PS>TerminatingError(Import-Module): "Windows PowerShell Workflow is not supported in a Windows PowerShell x86-based console. Open a Windows PowerShell x64-based console, and then try again."

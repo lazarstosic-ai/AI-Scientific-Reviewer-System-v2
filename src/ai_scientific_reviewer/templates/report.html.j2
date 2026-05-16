@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Scientific Reviewer System - Report</title>
+    <style>
+      body {
+        margin: 28px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #151515;
+        line-height: 1.45;
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: 26px;
+      }
+
+      h2 {
+        margin: 24px 0 10px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #d8d8d8;
+        font-size: 18px;
+      }
+
+      h3 {
+        margin: 14px 0 6px;
+        font-size: 15px;
+      }
+
+      p {
+        margin: 6px 0;
+      }
+
+      ul {
+        margin: 6px 0 10px 20px;
+        padding: 0;
+      }
+
+      li {
+        margin: 3px 0;
+      }
+
+      table {
+        width: 100%;
+        margin: 8px 0 12px;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+
+      th,
+      td {
+        padding: 8px;
+        border: 1px solid #dddddd;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: #f3f3f0;
+      }
+
+      .meta {
+        margin: 10px 0 18px;
+        color: #333333;
+        font-size: 14px;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: #eeeeee;
+        font-size: 12px;
+      }
+
+      .ok {
+        background: #d9f0e1;
+      }
+
+      .warn {
+        background: #fff0c2;
+      }
+
+      .risk {
+        background: #ffd9d9;
+      }
+
+      .muted {
+        color: #666666;
+      }
+
+      .note {
+        margin: 8px 0;
+        padding: 10px;
+        border-left: 4px solid #b8b8b2;
+        background: #f7f7f4;
+      }
+
+      .download-link {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        border: 0;
+        border-radius: 6px;
+        background: #111111;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      @media print {
+        .download-link {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% set meta = report.manuscript_metadata or {} %}
+    {% set abstract = report.abstract_assessment or {} %}
+    {% set doi = report.doi_validation_report or {} %}
+    {% set refs = report.reference_verification_report or {} %}
+    {% set methodology = report.methodology_assessment or {} %}
+    {% set imrad = report.imrad_structure_assessment or {} %}
+    {% set screening = report.editorial_screening or {} %}
+    {% set quality = report.scientific_quality_assessment or {} %}
+    {% set readiness = report.scopus_wos_readiness or {} %}
+
+    <h1>AI Scientific Reviewer System - Preliminary Screening Report</h1>
+    <div class="meta">
+      <p><strong>Title:</strong> {{ meta.title or "Not detected" }}</p>
+      <p><strong>File:</strong> {{ meta.input_filename or "Not specified" }}</p>
+      <p><strong>Recommendation:</strong>
+        <span class="badge {{ 'risk' if report.final_recommendation in ['Reject','Reject and resubmit'] else ('warn' if report.final_recommendation in ['Major revision','Minor revision'] else 'ok') }}">
+          {{ report.final_recommendation or "Not specified" }}
+        </span>
+      </p>
+      <button class="download-link" type="button" onclick="window.print()">Download PDF report</button>
+    </div>
+
+    <h2>1. Manuscript Metadata</h2>
+    <p><strong>Detected title:</strong> {{ meta.title or "Not detected. Manual verification is required." }}</p>
+    <p><strong>Keywords:</strong>
+      {% if meta.keywords %}{{ meta.keywords | join(", ") }}{% else %}No keywords detected.{% endif %}
+    </p>
+
+    <h2>2. Abstract Assessment</h2>
+    <p><strong>Word count:</strong> {{ abstract.word_count or 0 }} words.
+      {% if abstract.within_150_250 %}
+        <span class="badge ok">Within 150-250 words</span>
+      {% else %}
+        <span class="badge warn">Outside recommended range</span>
+      {% endif %}
+    </p>
+    <table>
+      <tr><th>Expected element</th><th>Status</th></tr>
+      {% for name, present in (abstract.components_present or {}).items() %}
+        <tr>
+          <td>{{ name | replace("_", " ") | title }}</td>
+          <td>{% if present %}<span class="badge ok">Present</span>{% else %}<span class="badge warn">Not clearly detected</span>{% endif %}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% if abstract.missing_components %}
+      <p><strong>Missing or unclear abstract elements:</strong> {{ abstract.missing_components | join(", ") }}.</p>
+    {% endif %}
+    <h3>Improvement Suggestions</h3>
+    <ul>
+      {% for item in abstract.suggestions or [] %}
+        <li>{{ item }}</li>
+      {% else %}
+        <li>No specific abstract suggestions generated.</li>
+      {% endfor %}
+    </ul>
+
+    <h2>3. DOI Validation Report</h2>
+    <p><strong>Total DOI strings detected:</strong> {{ doi.extracted_dois_count or 0 }}</p>
+    <p><strong>Syntax-valid DOIs:</strong> {{ (doi.syntax_valid or []) | length }}</p>
+    <p><strong>Invalid DOI strings:</strong> {{ (doi.syntax_invalid or []) | length }}</p>
+    {% if doi.syntax_invalid %}
+      <ul>
+        {% for item in doi.syntax_invalid %}
+          <li>{{ item }} - invalid DOI syntax.</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <p><strong>Crossref-validated DOIs:</strong> {{ (doi.valid or []) | length }}</p>
+    {% if doi.valid %}
+      <table>
+        <tr><th>DOI</th><th>Crossref title</th><th>Year</th><th>Journal/source</th></tr>
+        {% for item in doi.valid %}
+          <tr>
+            <td>{{ item.doi }}</td>
+            <td>{{ item.crossref.title or "Title missing in Crossref metadata" }}</td>
+            <td>{{ item.crossref.year or "Not available" }}</td>
+            <td>{{ item.crossref.container_title or "Not available" }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+    {% if doi.metadata_mismatch %}
+      <h3>Potential DOI Metadata Mismatches</h3>
+      <ul>
+        {% for item in doi.metadata_mismatch %}
+          <li>{{ item.doi }} - Crossref metadata may not match the cited reference. Manual verification is required.</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if doi.missing_metadata %}
+      <h3>Missing DOI Metadata</h3>
+      <ul>
+        {% for item in doi.missing_metadata %}
+          <li>{{ item.doi }} - {{ item.reason or "metadata could not be retrieved." }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if doi.unverifiable %}
+      <h3>Unverifiable DOI Items</h3>
+      <ul>
+        {% for item in doi.unverifiable %}
+          <li>{{ item.doi }} - {{ item.note or item.error or "not verified." }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <div class="note">DOI validation is based on Crossref REST API results. Items marked as mismatched or unverifiable should be checked manually by an editor.</div>
+
+    <h2>4. Reference Verification Report</h2>
+    <p><strong>Total references detected:</strong> {{ refs.references_count or 0 }}</p>
+    <p><strong>References with Crossref candidate matches:</strong> {{ (refs.verified_candidates or []) | length }}</p>
+    <p><strong>Incomplete reference candidates:</strong> {{ (refs.incomplete_candidates or []) | length }}</p>
+    <p><strong>Unverifiable references:</strong> {{ (refs.unverifiable_candidates or []) | length }}</p>
+    {% if refs.unverifiable_candidates %}
+      <h3>Unverifiable or Potentially Hallucinated References</h3>
+      <ul>
+        {% for item in refs.unverifiable_candidates[:20] %}
+          <li>Reference {{ item.ref_index }} - {{ item.reason or item.error or "No Crossref match found." }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if refs.incomplete_candidates %}
+      <h3>Incomplete References</h3>
+      <ul>
+        {% for item in refs.incomplete_candidates[:20] %}
+          <li>Reference {{ item.ref_index }} - {{ item.reason }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <h2>5. APA Formatting Suggestions</h2>
+    <p><strong>APA formatting issues detected:</strong> {{ (refs.apa_formatting_issues or []) | length }}</p>
+    {% if refs.apa_formatting_issues %}
+      <ul>
+        {% for item in refs.apa_formatting_issues[:20] %}
+          <li>Reference {{ item.ref_index }} - {{ item.issue }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if refs.apa7_suggestions %}
+      <h3>Suggested APA 7 Corrections Where Metadata Was Sufficient</h3>
+      <ol>
+        {% for item in refs.apa7_suggestions[:20] %}
+          <li>{{ item.suggested_apa7 }}</li>
+        {% endfor %}
+      </ol>
+    {% else %}
+      <p>No APA 7 corrections were generated because sufficient verified metadata was not available.</p>
+    {% endif %}
+
+    <h2>6. IMRAD Structure Assessment</h2>
+    <table>
+      <tr><th>Section</th><th>Status</th></tr>
+      {% for name, present in imrad.items() %}
+        <tr>
+          <td>{{ name | replace("_", " ") | title }}</td>
+          <td>{% if present %}<span class="badge ok">Detected</span>{% else %}<span class="badge warn">Not clearly detected</span>{% endif %}</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    <h2>7. Methodology Assessment</h2>
+    <table>
+      <tr><th>Reporting element</th><th>Status</th></tr>
+      {% for name, present in (methodology.methodology_signals or {}).items() %}
+        <tr>
+          <td>{{ name | replace("_", " ") | title }}</td>
+          <td>{% if present %}<span class="badge ok">Detected</span>{% else %}<span class="badge warn">Not clearly detected</span>{% endif %}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% if methodology.major_methodological_weaknesses %}
+      <h3>Major Methodological Weaknesses</h3>
+      <ul>
+        {% for item in methodology.major_methodological_weaknesses %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <h2>8. Ethics and Transparency Notes</h2>
+    <ul>
+      {% for item in report.ethics_and_transparency_notes or [] %}
+        <li>{{ item }}</li>
+      {% else %}
+        <li>No ethics or transparency notes were generated.</li>
+      {% endfor %}
+    </ul>
+
+    <h2>9. Additional Editorial Screening Modules (Indicative)</h2>
+    <div class="note">
+      These checks are heuristic signals for editors. They are not proof of plagiarism or AI generation.
+    </div>
+
+    <h3>Plagiarism / Similarity Warning</h3>
+    <p><strong>Level:</strong>
+      <span class="badge {{ 'risk' if screening.plagiarism_similarity_warning.level == 'high' else ('warn' if screening.plagiarism_similarity_warning.level == 'medium' else 'ok') }}">
+        {{ screening.plagiarism_similarity_warning.level or "unknown" }}
+      </span>
+    </p>
+    {% if screening.plagiarism_similarity_warning.examples %}
+      <p><strong>Examples (repeated / generic sentences):</strong></p>
+      <ul>
+        {% for item in screening.plagiarism_similarity_warning.examples %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <h3>AI-Generated Text Risk Indicator</h3>
+    <p><strong>Level:</strong>
+      <span class="badge {{ 'risk' if screening.ai_generated_text_risk_indicator.level == 'high' else ('warn' if screening.ai_generated_text_risk_indicator.level == 'medium' else 'ok') }}">
+        {{ screening.ai_generated_text_risk_indicator.level or "unknown" }}
+      </span>
+    </p>
+
+    <h3>Journal Scope Alignment</h3>
+    <p><strong>Level:</strong>
+      <span class="badge {{ 'warn' if screening.journal_scope_alignment.level in ['low','unknown'] else 'ok' }}">
+        {{ screening.journal_scope_alignment.level or "unknown" }}
+      </span>
+    </p>
+    {% if screening.journal_scope_alignment.overlapping_terms %}
+      <p><strong>Overlapping terms:</strong> {{ screening.journal_scope_alignment.overlapping_terms | join(", ") }}</p>
+    {% endif %}
+
+    <h3>Ethics and IRB Check</h3>
+    <p><strong>Status:</strong>
+      <span class="badge {{ 'warn' if screening.ethics_and_irb_check.level == 'warning' else ('ok' if screening.ethics_and_irb_check.level == 'ok' else 'badge') }}">
+        {{ screening.ethics_and_irb_check.level or "unknown" }}
+      </span>
+    </p>
+
+    <h3>Data Availability Check</h3>
+    <p><strong>Status:</strong>
+      <span class="badge {{ 'warn' if screening.data_availability_check.level == 'missing' else 'ok' }}">
+        {{ screening.data_availability_check.level or "unknown" }}
+      </span>
+    </p>
+    {% if screening.data_availability_check.hits %}
+      <p><strong>Detected cues:</strong> {{ screening.data_availability_check.hits | join(", ") }}</p>
+    {% endif %}
+
+    <h3>Figures and Tables Check</h3>
+    <p><strong>Figures detected:</strong> {{ screening.figures_and_tables_check.figures_detected or 0 }},
+       <strong>Tables detected:</strong> {{ screening.figures_and_tables_check.tables_detected or 0 }}</p>
+    {% if screening.figures_and_tables_check.figure_number_gaps %}
+      <p><strong>Figure numbering gaps:</strong> {{ screening.figures_and_tables_check.figure_number_gaps | join(", ") }}</p>
+    {% endif %}
+    {% if screening.figures_and_tables_check.table_number_gaps %}
+      <p><strong>Table numbering gaps:</strong> {{ screening.figures_and_tables_check.table_number_gaps | join(", ") }}</p>
+    {% endif %}
+
+    <h3>Citation Freshness Check (Last 5 Years)</h3>
+    {% if screening.citation_freshness_check.signals %}
+      <p>
+        <strong>Recent ratio:</strong> {{ screening.citation_freshness_check.signals.recent_ratio }},
+        <strong>Recent count:</strong> {{ screening.citation_freshness_check.signals.recent_references_count }},
+        <strong>Total with years:</strong> {{ screening.citation_freshness_check.signals.references_with_years }}
+      </p>
+    {% else %}
+      <p class="muted">No reference years detected for freshness check.</p>
+    {% endif %}
+
+    <h3>Language Quality Check</h3>
+    <p><strong>Status:</strong>
+      <span class="badge {{ 'warn' if screening.language_quality_check.level == 'warning' else ('ok' if screening.language_quality_check.level == 'ok' else 'badge') }}">
+        {{ screening.language_quality_check.level or "unknown" }}
+      </span>
+    </p>
+
+    <h3>Conflict of Interest / Funding Check</h3>
+    <p><strong>Status:</strong>
+      <span class="badge {{ 'warn' if screening.conflict_of_interest_funding_check.level != 'present' else 'ok' }}">
+        {{ screening.conflict_of_interest_funding_check.level or "unknown" }}
+      </span>
+    </p>
+
+    <h2>9. Scientific Quality Assessment</h2>
+    <p><strong>Scientific contribution:</strong> {{ quality.scientific_contribution or "Requires expert editorial judgment." }}</p>
+    <p><strong>Writing quality:</strong> {{ quality.writing_quality or "Not fully assessed." }}</p>
+    <p><strong>Methodological rigor:</strong> {{ quality.methodological_rigor or "Not fully assessed." }}</p>
+
+    <h2>10. Scopus/WoS Readiness</h2>
+    <p><strong>Overall readiness:</strong> {{ readiness.overall or "Not assessed" }}</p>
+    {% if readiness.drivers %}
+      <ul>
+        {% for item in readiness.drivers %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <div class="note">{{ readiness.note or "This is a preliminary screening estimate, not a final indexing decision." }}</div>
+
+    <h2>11. Major Weaknesses</h2>
+    <ul>
+      {% for item in report.major_weaknesses or [] %}
+        <li>{{ item }}</li>
+      {% else %}
+        <li>No major weaknesses were flagged by the automated screening heuristics.</li>
+      {% endfor %}
+    </ul>
+
+    <h2>12. Minor Weaknesses</h2>
+    <ul>
+      {% for item in report.minor_weaknesses or [] %}
+        <li>{{ item }}</li>
+      {% else %}
+        <li>No minor weaknesses were flagged by the automated screening heuristics.</li>
+      {% endfor %}
+    </ul>
+
+    <h2>13. Required Revisions</h2>
+    <ul>
+      {% for item in report.required_revisions or [] %}
+        <li>{{ item }}</li>
+      {% else %}
+        <li>No required revisions were generated.</li>
+      {% endfor %}
+    </ul>
+
+    <h2>14. Final Recommendation</h2>
+    <p><strong>{{ report.final_recommendation or "Not specified" }}</strong></p>
+    <p class="muted">This report is a preliminary editorial screening aid. It does not replace expert peer review or final editorial judgment.</p>
+
+    <h2>15. Reviewer Response</h2>
+    {% if report.reviewer_response %}
+      <div class="note" style="white-space: pre-wrap">{{ report.reviewer_response }}</div>
+    {% else %}
+      <p class="muted">No reviewer response text was generated.</p>
+    {% endif %}
+    <script>
+      if (new URLSearchParams(window.location.search).get("print") === "1") {
+        window.addEventListener("load", function () {
+          window.setTimeout(function () {
+            window.print();
+          }, 300);
+        });
+      }
+    </script>
+  </body>
+</html>

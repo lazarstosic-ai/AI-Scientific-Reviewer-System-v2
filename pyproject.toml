@@ -1,0 +1,41 @@
+[project]
+name = "ai-scientific-reviewer-system"
+version = "0.1.0"
+description = "LangGraph-based multi-agent system for editorial screening and preliminary peer-review assessment of scientific manuscripts."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "langgraph>=0.2.0",
+  "pydantic>=2.7.0",
+  "requests>=2.31.0",
+  "python-docx>=1.1.2",
+  "jinja2>=3.1.4",
+  "fastapi>=0.111.0",
+  "uvicorn>=0.30.0",
+  "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+pdf = [
+  "weasyprint>=62.0",
+]
+ui = [
+  "streamlit>=1.37.0",
+]
+
+[project.scripts]
+ai-scirev = "ai_scientific_reviewer.cli:main"
+ai-scirev-web = "ai_scientific_reviewer.web_app:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ai_scientific_reviewer = ["templates/*.j2", "static/*.html"]

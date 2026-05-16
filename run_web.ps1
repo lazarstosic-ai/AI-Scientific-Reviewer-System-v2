@@ -1,0 +1,86 @@
+$ErrorActionPreference = "Stop"
+
+Set-Location -LiteralPath $PSScriptRoot
+$logPath = Join-Path $PSScriptRoot "server_log.txt"
+Start-Transcript -Path $logPath -Append | Out-Null
+
+try {
+
+$srcPath = Join-Path $PSScriptRoot "src"
+if ($env:PYTHONPATH) {
+  $env:PYTHONPATH = "$srcPath;$env:PYTHONPATH"
+} else {
+  $env:PYTHONPATH = $srcPath
+}
+
+function Find-Python {
+  $localVenv = Join-Path $PSScriptRoot ".venv\Scripts\python.exe"
+  $codexPython = "C:\Users\lazar\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
+
+  if (Test-Path -LiteralPath $localVenv) {
+    return $localVenv
+  }
+
+  if (Test-Path -LiteralPath $codexPython) {
+    return $codexPython
+  }
+
+  $py = Get-Command py -ErrorAction SilentlyContinue
+  if ($py) {
+    return "py"
+  }
+
+  $python = Get-Command python -ErrorAction SilentlyContinue
+  if ($python) {
+    return "python"
+  }
+
+  throw "Python was not found. Install Python 3.11+ from https://www.python.org/downloads/ and run this script again."
+}
+
+$pythonExe = Find-Python
+
+if ($pythonExe -eq "py") {
+  $pythonCmd = @("py", "-3")
+} else {
+  $pythonCmd = @($pythonExe)
+}
+
+function Invoke-ProjectPython {
+  if ($pythonCmd.Length -gt 1) {
+    & $pythonCmd[0] $pythonCmd[1] @args
+  } else {
+    & $pythonCmd[0] @args
+  }
+}
+
+Write-Host "Using Python: $($pythonCmd -join ' ')" -ForegroundColor Cyan
+
+Invoke-ProjectPython -c "import fastapi, uvicorn, langgraph, docx, jinja2, requests; import ai_scientific_reviewer" *> $null
+if ($LASTEXITCODE -ne 0) {
+  Write-Host "Installing dependencies..." -ForegroundColor Cyan
+  Invoke-ProjectPython -m pip install -e .
+} else {
+  Write-Host "Dependencies already available." -ForegroundColor Cyan
+}
+
+if (-not $env:CROSSREF_MAILTO) {
+  Write-Host "Tip: set CROSSREF_MAILTO for Crossref polite requests, e.g.:" -ForegroundColor Yellow
+  Write-Host '$env:CROSSREF_MAILTO="you@domain.com"' -ForegroundColor Yellow
+}
+
+$url = "http://127.0.0.1:8000"
+Write-Host "Starting AI Scientific Reviewer System at $url" -ForegroundColor Green
+Start-Job -ScriptBlock {
+  param([string]$Url)
+  Start-Sleep -Seconds 2
+  Start-Process $Url
+} -ArgumentList $url | Out-Null
+Invoke-ProjectPython -m ai_scientific_reviewer.web_app
+} catch {
+  Write-Host "Startup failed: $($_.Exception.Message)" -ForegroundColor Red
+  Write-Host "See log: $logPath" -ForegroundColor Yellow
+  throw
+} finally {
+  Stop-Transcript | Out-Null
+}
