@@ -90,3 +90,7 @@ Then open: `http://127.0.0.1:8000`
 ## Notes / Non-hallucination policy
 - The system never invents DOI numbers or bibliographic metadata.
 - When Crossref cannot verify an item, it is explicitly labeled `unverifiable`.
+
+## Contributors
+- Lazar Stošić, PhD
+- Martin Mitrović, PhD student
